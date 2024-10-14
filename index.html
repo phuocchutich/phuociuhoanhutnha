@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Love Calculator</title>
+        <title>Love</title>
        <style>
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -145,7 +145,7 @@ h1, h2, p {
     </head>
     <body>
         <div id="content-box">
-            <h1>Trắc Nghiệm tình yêu</h1>
+            <h1>Câu hỏi tình yêu</h1>
             <p>Hòa có yêu Phước hông 🥰🥰🥰</p>
             <br>
             <button id="yes">Có ❤</button>
@@ -181,60 +181,38 @@ h1, h2, p {
                         }, 3000); // 3 giây để trùng với thời gian của animation
                     }
                 });
-
+                
                 noBtn.addEventListener('mouseover', () => {
-                    // Di chuyển nút "Không" ngẫu nhiên
-                    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-                    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-                    noBtn.style.position = "absolute";
-                    noBtn.style.left = `${x}px`;
-                    noBtn.style.top = `${y}px`;
-                    noBtn.style.cursor = "not-allowed";
-                    // Tăng số lần di chuột qua nút "Không"
-                    mouseOverCount++;
-                    // Khi di chuột qua 2 lần, hiện thông báo và tạo icon 🤔
-                    if (mouseOverCount === 2) {
-                        resultMessage.innerText = "Anh hông tin😭😭😭";
+        // Di chuyển nút "Không" ngẫu nhiên
+        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+        noBtn.style.position = "absolute";
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+        noBtn.style.cursor = "not-allowed";
+        
+        // Tăng số lần di chuột qua nút "Không"
+        mouseOverCount++;
 
-                        // Tạo icon 🤔 kiểu pháo hoa
-                        for (let i = 0; i < 20; i++) {
-                            const icon = document.createElement('div');
-                            icon.innerText = '🤔';
-                            icon.classList.add('icon');
-                            icon.style.setProperty('--x', `${Math.random() * 400 - 200}px`); // Hướng ngẫu nhiên theo chiều ngang
-                            icon.style.setProperty('--y', `${Math.random() * 400 - 200}px`); // Hướng ngẫu nhiên theo chiều dọc
-                            icon.style.left = '50%';
-                            icon.style.top = '50%';
-                            icon.style.transform = 'translate(-50%, -50%)';
-                            iconContainer.appendChild(icon);
-                            // Xóa icon sau khi hoàn thành animation
-                            setTimeout(() => {
-                                icon.remove();
-                            }, 3000); // 3 giây để trùng với thời gian của animation
-                        }
-                    }
-                    if(mouseOverCount === 4) {
-                        resultMessage.innerText = "Đừng nhấn nữa mà😭😭😭 ";
+        // Khi di chuột qua 2 lần, hiện thông báo và tạo icon 🤔
+        if (mouseOverCount === 2) {
+            resultMessage.innerText = "Anh hông tin 😭😭😭";
+            createFireworkIcons('🤔');
+        }
 
-                        // Tạo icon 🤔 kiểu pháo hoa
-                        for (let i = 0; i < 20; i++) {
-                            const icon = document.createElement('div');
-                            icon.innerText = '😭';
-                            icon.classList.add('icon');
-                            icon.style.setProperty('--x', `${Math.random() * 400 - 200}px`); // Hướng ngẫu nhiên theo chiều ngang
-                            icon.style.setProperty('--y', `${Math.random() * 400 - 200}px`); // Hướng ngẫu nhiên theo chiều dọc
-                            icon.style.left = '50%';
-                            icon.style.top = '50%';
-                            icon.style.transform = 'translate(-50%, -50%)';
-                            iconContainer.appendChild(icon);
+        // Khi di chuột qua 4 lần, hiện thông báo và tạo icon 😭
+        if (mouseOverCount === 4) {
+            resultMessage.innerText = "Đừng nhấn nữa mà 😭😭😭";
+            createFireworkIcons('😭');
+        }
 
-                            // Xóa icon sau khi hoàn thành animation
-                            setTimeout(() => {
-                                icon.remove();
-                            }, 3000); // 3 giây để trùng với thời gian của animation
-                        }
-                    }
-                });
+        // Khi di chuột qua 5 lần, ẩn nút "Không"
+        if (mouseOverCount === 5) {
+            noBtn.style.display = 'none'; // Ẩn nút "Không"
+            resultMessage.innerText = "Nút 'Không' đã biến mất!😜😜😜";
+        }
+    });
+
             </script>
         </div>
     </body>
